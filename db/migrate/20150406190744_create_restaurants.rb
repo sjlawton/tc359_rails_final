@@ -1,10 +1,10 @@
 class CreateRestaurants < ActiveRecord::Migration
   def change
     create_table :restaurants do |t|
-      t.string :name
-      t.string :description
-      t.integer :phone
-      t.boolean :takes_reservations
+      t.text :name
+      t.text :address
+      t.boolean :is_open
+      t.integer :rating
 
       t.timestamps null: false
     end
