@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :sessions, only: [:new, :create, :destroy]
   resources :restaurants
 
   root 'static#home'
-
+  get '/sign-in' => 'sessions#new'
+  delete '/sign-out' => 'sessions#destroy'
   get '/about' => 'static#about'
   get '/cat_pictures(/:number_of_cats)' => 'static#cats', as: :cat_pictures
   # The priority is based upon order of creation: first created -> highest priority.
