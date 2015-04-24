@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Listing Restaurants</h1>
-
+<% @restaurants = Restaurant.paginate(:page => params[:page]) %>
+<%= will_paginate @restaurants %>
 <table>
   <thead>
     <tr>

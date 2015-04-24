@@ -13,6 +13,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'will_paginate', '~> 3.0.6'
 gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
