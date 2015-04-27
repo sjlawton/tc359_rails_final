@@ -48,12 +48,7 @@
 <div class="chart">
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-
 <script>
-
-
-
-
 var data = [<%= Restaurant.where(rating:1).count %>,<%= Restaurant.where(rating:2).count %>,
 <%= Restaurant.where(rating:3).count %>,<%= Restaurant.where(rating:4).count %>, <%= Restaurant.where(rating:5).count %>];
 console.log(data)
