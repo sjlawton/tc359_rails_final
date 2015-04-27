@@ -3,9 +3,13 @@ class RestaurantsController < ApplicationController
   before_action :only_allow_signed_in_users, except: [:index, :show]
   # GET /restaurants
   # GET /restaurants.json
+
+
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.search(params[:search]).paginate(:page => params[:page])
   end
+
+
 
   # GET /restaurants/1
   # GET /restaurants/1.json
@@ -20,6 +24,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1/edit
   def edit
   end
+
 
   # POST /restaurants
   # POST /restaurants.json

@@ -1,7 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing Restaurants</h1>
-<% @restaurants = Restaurant.paginate(:page => params[:page]) %>
+
 <%= will_paginate @restaurants %>
+
+
+<%= form_tag restaurants_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
 <table>
   <thead>
     <tr>
@@ -29,8 +39,28 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 <% if user_signed_in? %>
   <%= link_to 'New Restaurant', new_restaurant_path %>
 <% end %>
+<br>
+<h2>Number of restraurants rated 1-5</h2>
+<div class="chart">
+</div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+
+
+
+var data = [<%= Restaurant.where(rating:1).count %>,<%= Restaurant.where(rating:2).count %>,
+<%= Restaurant.where(rating:3).count %>,<%= Restaurant.where(rating:4).count %>, <%= Restaurant.where(rating:5).count %>];
+console.log(data)
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) { return 10 * d + "px"; })
+    .text(function(d) { return d; });
+</script>
